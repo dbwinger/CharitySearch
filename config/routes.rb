@@ -1,9 +1,6 @@
 CharitySearch::Application.routes.draw do
-  get "home/index"
-
-  root :to => "home#index"
-
-  resources :charity_
+  get "charity_service/index"
+  root :to => "charity_service#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
