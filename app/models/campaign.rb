@@ -7,6 +7,7 @@ class Campaign < ActiveRecord::Base
 
   def get_image_url
     # To be implemented later
+    "rails.jpg"
   end
 
   def charity

@@ -11,6 +11,7 @@ class Charity
 
   def self.get_image_url(ein)
     # To be implemented later
+    "rails.jpg"
   end
 
   private
