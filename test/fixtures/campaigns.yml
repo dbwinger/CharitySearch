@@ -1,0 +1,9 @@
+<% 100.times do |charity_id| %>
+  <% 3.times do |campaign_num| %>
+<%= "#{charity_id}_#{campaign_num}" %>:
+  charity_id: <%= charity_id %>
+  name:  Charity <%= charity_id %>::Campaign <%= campaign_num %>
+  description: Description of campaign <%= campaign_num %>
+  <% end %>
+<% end %>
+
