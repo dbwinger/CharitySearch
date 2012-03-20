@@ -6,7 +6,7 @@
     <%= charity[:description] %>
   </td>
   <td>
-    <%= image_tag Charity.get_image_url(charity[:ein])%>
+    <%= image_tag Charity.get_image_url(charity[:ein]), :size => "32x40"%>
   </td>
   <td>
       <%= link_to("Select", append_query_string(@selection_url, "charity_id", charity[:ein])) if @selection_url %>

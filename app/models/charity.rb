@@ -11,7 +11,7 @@ class Charity
 
   def self.get_image_url(ein)
     # To be implemented later
-    "rails.jpg"
+    "http://rubyonrails.org/images/rails.png"
   end
 
   private

@@ -6,7 +6,7 @@
     <%= campaign.description %>
   </td>
   <td>
-    <%= image_tag campaign.get_image_url %>
+    <%= image_tag campaign.get_image_url, :size => "32x40" %>
   </td>
   <td>
     <%= campaign.charity[:orgName] %>
@@ -15,7 +15,7 @@
     <%= campaign.charity[:description] %>
   </td>
   <td>
-    <%= image_tag Charity.get_image_url(campaign.charity_id)%>
+    <%= image_tag Charity.get_image_url(campaign.charity_id), :size => "32x40"%>
   </td>
 
   <td>
