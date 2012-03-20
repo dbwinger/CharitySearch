@@ -9,7 +9,7 @@
     <%= submit_tag "Do Some Good", :name => "submit" %>
   <%end%>
 </div>
-<% if @search_terms && @cancellation_url %>
+<% if @cancellation_url %>
   <br/>
   <%= link_to "Cancel", @cancellation_url %>
 <%end%>
@@ -17,7 +17,7 @@
 <div id="charity_results">
   <% if @campaigns || @charities %>
     <h2>Campaigns matching '<%= @search_terms %>'</h2>
-    <table>
+    <table id="campaigns">
       <tr>
         <th>Campaign</th>
         <th>Campaign Description</th>
@@ -32,18 +32,18 @@
     <%= paginate @campaigns, :param_name => :campaigns_page %>
     <hr/>
     <h2>Charities matching '<%= @search_terms %>'</h2>
-    <table>
+    <table id="charities">
       <tr>
         <th>Charity</th>
         <th>Charity Description</th>
         <th>Charity Logo</th>
         <th></th>
-      </tr>
+      </tr
       <%= render :partial => "charities/charity", :collection => @charities %>
     </table>
     <%= paginate @charities, :param_name => :charities_page %>
   <%elsif params[:search_terms] %>
-    You've reached the end of the internet; we couldn't find what you were looking for.
+    <span id="no_results">You've reached the end of the internet; we couldn't find what you were looking for.</span>
   <%end%>
 </div>
 
