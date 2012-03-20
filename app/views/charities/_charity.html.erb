@@ -9,7 +9,7 @@
     <%= image_tag CharityService.get_charity_image_url(charity[:ein]), :size => "32x40"%>
   </td>
   <td>
-      <%= link_to("Select", append_query_string(@selection_url, "charity_id", charity[:ein])) if @selection_url %>
+      <%= link_to("Select", append_query_string(@selection_url, "charity_id", charity[:ein])) unless @selection_url.blank? %>
   </td>
 </tr>
 

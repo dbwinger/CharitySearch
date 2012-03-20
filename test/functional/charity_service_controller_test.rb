@@ -8,7 +8,7 @@ class CharityServiceControllerTest < ActionController::TestCase
     assert_nil assigns(:campaigns)
     assert_nil assigns(:search_terms)
 
-    assert_select "form" do
+    assert_select "form[action='#{request.path}'][method='get']" do
       assert_select "[name=submit]", 1
       assert_select "input#search_terms", ""
     end
@@ -106,18 +106,29 @@ class CharityServiceControllerTest < ActionController::TestCase
     end
   end
 
-  test "cancellation link" do
+  test "cancellation_url" do
     cancellation_url = "http://www.google.com/"
     get :index, :cancellation_url => cancellation_url
     assert_select "a[href='#{cancellation_url}']:content('Cancel')"
+    # Form hidden field populated
+    assert_select "form input#cancellation_url[type='hidden'][value='#{cancellation_url}']"
+
+    get :index, :cancellation_url => ""
+    assert_select "a[href='#{cancellation_url}']:content('Cancel')", 0
+    # Form hidden field not populated
+    assert_select "form input#cancellation_url[type='hidden']", 0
 
     get :index
     assert_select "a[href='#{cancellation_url}']:content('Cancel')", 0
+    # Form hidden field not populated
+    assert_select "form input#cancellation_url[type='hidden']", 0
   end
 
-  test "selection_url visibility/functionality" do
+  test "selection_url" do
     selection_url = "http://www.google.com/"
     get :index, :search_terms => "test", :selection_url => selection_url
+    # Form hidden field populated
+    assert_select "form input#selection_url[type='hidden'][value='#{selection_url}']"
 
     Campaign.search("test").limit(10).each do |campaign|
       assert_select "table#campaigns a[href^='#{selection_url}?campaign_id=#{campaign.id}']:content('Select')"
@@ -126,9 +137,17 @@ class CharityServiceControllerTest < ActionController::TestCase
       assert_select "table#charities a[href^='#{selection_url}?charity_id=#{charity[:ein]}']:content('Select')"
     end
 
+    get :index, :search_terms => "test", :selection_url => ""
+    # No selection_url passed, so no "Select" links shown.
+    assert_select "table a:content('Select')", 0
+    # Form hidden field not populated
+    assert_select "form input#selection_url[type='hidden']", 0
+
     get :index, :search_terms => "test"
     # No selection_url passed, so no "Select" links shown.
     assert_select "table a:content('Select')", 0
+    # Form hidden field not populated
+    assert_select "form input#selection_url[type='hidden']", 0
   end
 end
 

@@ -19,7 +19,7 @@
   </td>
 
   <td>
-    <%= link_to("Select", append_query_string(@selection_url,"campaign_id",campaign.id)) if @selection_url %>
+    <%= link_to("Select", append_query_string(@selection_url,"campaign_id",campaign.id)) unless @selection_url.blank? %>
   </td>
 </tr>
 
