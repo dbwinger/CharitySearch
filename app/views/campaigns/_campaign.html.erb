@@ -1,0 +1,24 @@
+<tr>
+  <td>
+    <%= campaign.name %>
+  </td>
+  <td>
+    <%= campaign.description %>
+  </td>
+  <td>
+    <%= image_tag campaign.get_image_url %>
+  </td>
+  <td>
+    <%= campaign.charity[:orgName] %>
+  </td>
+  <td>
+    <%= campaign.charity[:description] %>
+  </td>
+  <td>
+    <%= image_tag Charity.get_image_url(campaign.charity_id)%>
+  </td>
+
+  <td>
+    <%= link_to("Select", append_query_string(@selection_url,"campaign_id",campaign.id)) if @selection_url %>
+</tr>
+

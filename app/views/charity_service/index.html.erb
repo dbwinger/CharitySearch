@@ -1,0 +1,46 @@
+<h1>Search Charities and Campaigns</h1>
+<div id="charity_search">
+  <%= form_tag(charity_service_index_path, :method => "get") do %>
+    <%= text_field_tag(:search_terms, @search_terms || "") %>
+    <%= hidden_field_tag(:cancellation_url, params[:cancellation_url]) %>
+    <%= hidden_field_tag(:selection_url, params[:selection_url]) %>
+    <%= submit_tag "Do Some Good", :name => "submit" %>
+  <%end%>
+</div>
+<% if @search_terms && @cancellation_url %>
+  <br/>
+  <%= link_to "Cancel", @cancellation_url %>
+<%end%>
+
+<div id="charity_results">
+  <% if @campaigns || @charities %>
+    <h2>Campaigns matching '<%= @search_terms %>'</h2>
+    <table>
+      <tr>
+        <th>Campaign</th>
+        <th>Campaign Description</th>
+        <th>Campaign Logo</th>
+        <th>Charity</th>
+        <th>Charity Description</th>
+        <th>Charity Logo</th>
+        <th></th>
+      </tr>
+      <%= render :partial => "campaigns/campaign", :collection => @campaigns %>
+    </table>
+    <%= paginate @campaigns, :param_name => :campaigns_page %>
+    <h2>Charities matching '<%= @search_terms %>'</h2>
+    <table>
+      <tr>
+        <th>Charity</th>
+        <th>Charity Description</th>
+        <th>Charity Logo</th>
+        <th></th>
+      </tr>
+      <%= render :partial => "charities/charity", :collection => @charities %>
+    </table>
+    <%= paginate @charities, :param_name => :charities_page %>
+  <%elsif params[:search_terms] %>
+    You've reached the end of the internet; we couldn't find what you were looking for.
+  <%end%>
+</div>
+
