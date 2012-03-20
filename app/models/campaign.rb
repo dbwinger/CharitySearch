@@ -5,14 +5,11 @@ class Campaign < ActiveRecord::Base
     self.where(true)
   end
 
-  def get_image_url
-    # To be implemented later
-    "http://rubyonrails.org/images/rails.png"
-  end
-
-  def charity
+  # Get the whole hash of the associated Charity
+  def charity_hash
     unless @charity
-      @charity = Charity.find(charity_id)
+      require "#{Rails.root}/lib/CharityDataProvider.rb"
+      @charity = CharityDataProvider.find(charity_id)
       # Empty hash if nothing returned
       @charity = {} unless @charity
     end

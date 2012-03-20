@@ -1,4 +1,4 @@
-class Charity
+class CharityDataProvider
   def self.search(search_terms)
     # To be implemented later
     mock_data
@@ -7,11 +7,6 @@ class Charity
   # Find a specific charity by ein
   def self.find(ein)
     mock_data.select {|charity| charity[:ein] == ein}.first
-  end
-
-  def self.get_image_url(ein)
-    # To be implemented later
-    "http://rubyonrails.org/images/rails.png"
   end
 
   private

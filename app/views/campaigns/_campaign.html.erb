@@ -6,16 +6,16 @@
     <%= campaign.description %>
   </td>
   <td>
-    <%= image_tag campaign.get_image_url, :size => "32x40" %>
+    <%= image_tag CharityService.get_campaign_image_url(campaign.id), :size => "32x40" %>
   </td>
   <td>
-    <%= campaign.charity[:orgName] %>
+    <%= campaign.charity_hash[:orgName] %>
   </td>
   <td>
-    <%= campaign.charity[:description] %>
+    <%= campaign.charity_hash[:description] %>
   </td>
   <td>
-    <%= image_tag Charity.get_image_url(campaign.charity_id), :size => "32x40"%>
+    <%= image_tag CharityService.get_charity_image_url(campaign.charity_id), :size => "32x40"%>
   </td>
 
   <td>

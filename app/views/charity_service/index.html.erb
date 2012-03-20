@@ -1,4 +1,6 @@
 <h1>Search Charities and Campaigns</h1>
+<div style="border: solid 2px #0A0; padding:8px; width:50%">Keep search box blank to show "no results" view.  Enter anything else to see full results view.</div>
+<br/>
 <div id="charity_search">
   <%= form_tag(charity_service_index_path, :method => "get") do %>
     <%= text_field_tag(:search_terms, @search_terms || "") %>
@@ -11,7 +13,7 @@
   <br/>
   <%= link_to "Cancel", @cancellation_url %>
 <%end%>
-
+<hr/>
 <div id="charity_results">
   <% if @campaigns || @charities %>
     <h2>Campaigns matching '<%= @search_terms %>'</h2>
@@ -28,6 +30,7 @@
       <%= render :partial => "campaigns/campaign", :collection => @campaigns %>
     </table>
     <%= paginate @campaigns, :param_name => :campaigns_page %>
+    <hr/>
     <h2>Charities matching '<%= @search_terms %>'</h2>
     <table>
       <tr>
