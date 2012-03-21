@@ -12,23 +12,3 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-module HTML
-   class Tag < Node
-      def text
-         return @content if respond_to? :content
-         data=""
-         0.upto(children.size-1) {|i|
-             next if children[i].respond_to?:name and children[i].name=="script"
-             data += children[i].text
-         }
-         return data
-      end
-
-      def inner_html
-         data = ""
-         children.each {|e| data += e.to_s}
-         data
-       end
-   end
-end
-
